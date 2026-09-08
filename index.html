@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta
+      name="description"
+      content="Play Octordle online — solve eight five-letter words at once. Free daily puzzle, unlimited practice, and sequence mode. No signup required."
+    />
+    <meta name="theme-color" content="#f4f5f7" />
+    <meta property="og:title" content="Octordle - Play the 8-Word Puzzle Game Online" />
+    <meta
+      property="og:description"
+      content="Solve eight five-letter words with one shared set of guesses. Daily, Unlimited, and Sequence modes."
+    />
+    <meta property="og:type" content="website" />
+    <title>Octordle - Play the 8-Word Puzzle Game Online</title>
+    <script>
+      (function () {
+        try {
+          var raw = localStorage.getItem('octordle-settings');
+          var theme = raw ? JSON.parse(raw).theme : 'system';
+          var dark =
+            theme === 'dark' ||
+            (theme !== 'light' &&
+              window.matchMedia('(prefers-color-scheme: dark)').matches);
+          var resolved = dark ? 'dark' : 'light';
+          document.documentElement.dataset.theme = resolved;
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.setAttribute('content', dark ? '#12141a' : '#f4f5f7');
+          if (raw) {
+            var s = JSON.parse(raw);
+            if (s.highContrast) document.documentElement.dataset.highContrast = 'true';
+            if (s.animations === false) document.documentElement.dataset.animations = 'false';
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
