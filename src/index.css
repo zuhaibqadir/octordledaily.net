@@ -300,7 +300,10 @@ a {
 }
 
 .game-play-area {
-  flex: 1 1 0;
+  /* Height comes from the explicit height/max-height below (JS-measured, capped
+     at 58dvh). The parent .game-shell is flex:0 0 auto (content-sized), so a
+     flex-basis of 0 here would collapse the boards to zero height. */
+  flex: 0 0 auto;
   display: flex;
   align-items: stretch;
   justify-content: center;
